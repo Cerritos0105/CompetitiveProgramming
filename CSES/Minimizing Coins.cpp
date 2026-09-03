@@ -43,6 +43,7 @@
                                                     ..                           */
 #include <algorithm>
 #include <bits/stdc++.h>
+#include <climits>
 #include <cstdlib>
 using namespace std;
 typedef long long ll;
@@ -211,8 +212,8 @@ int bfs(long long x, long long y) {
 }
 
 void solve() {
-    int x; cin >> x;
     int n; cin >> n;
+    int x; cin >> x;
     vector<ll> v(n);
     for(int i =0; i < n; i++){
         cin >> v[i];
@@ -227,7 +228,8 @@ void solve() {
             }
         }
     }
-    cout<<dp[x]<<"\n";
+    if(dp[x]==x+1) cout<<"-1\n";
+    else cout<<dp[x]<<"\n";
 }   
 
 int main() {ios::sync_with_stdio(false);cin.tie(nullptr);
