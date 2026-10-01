@@ -213,21 +213,21 @@ int bfs(long long x, long long y) {
 }
 
 void solve() {
-    ll n; 
-    cin >> n;
-    
+    ll n, k; 
+    cin >> n>>  k;;
     vector<ll> h(n);
     for(ll i = 0; i < n; i++){
         cin >> h[i];
     }
-    vector<ll> dp(n);
+    vector<ll> dp(n, 1e9);
     dp[0] = 0;
     dp[1] = abs(h[1] - h[0]);
-    for(ll i = 2; i < n; i++){
-        ll op1 = dp[i-1] + abs(h[i] - h[i-1]);
-        ll op2 = dp[i-2] + abs(h[i] - h[i-2]);
-        dp[i] = min(op1, op2);
+    for(ll i = 1; i <= n+1; i++){
+       for(ll j = 1; j <=k && j <= i; j++){
+            dp[i]=min(dp[i], dp[i-j] + abs(h[i] - h[i-j]));
+       }
     }
+   
     cout << dp[n-1] << "\n";
 }   
 int main() {ios::sync_with_stdio(false);cin.tie(nullptr);
